@@ -1,6 +1,9 @@
 ---
 - hosts: client
   tasks:
+
+#-----------------------------------------------------------------------------
+# install required system packages for install Docker
     - name: Install aptitude
       apt:
         name: aptitude
@@ -45,6 +48,8 @@
       pip:
         name: docker
 
+# ----------------------------------------------------------------------------
+# build Docker image and run container
     - name: login to docker image registry
       docker_login: 
         username: "theay003"
@@ -53,11 +58,11 @@
 
     - name: Build Docker Image for ubuntu
       docker_image:
-        name: assignment1-ubuntu
+        name: assignment1-ubuntu # image name
         source: build 
         build: 
-          path: "/root/ig/dockerfile_folder"
-          dockerfile: "dockerfile_ubuntu"
+          path: "/root/ig/dockerfile_folder" # path to directory contain dockerfile
+          dockerfile: "dockerfile_ubuntu" # name of dockerfile it will build
           pull: yes 
 
     - name: Build Docker Image for debain
@@ -74,7 +79,7 @@
         name: assignment1-centos
         source: build 
         build: 
-          path: "/root/ig/dockerfile_folder"
+          path: "/root/ig/dockerfile_folder" 
           dockerfile: "dockerfile_centos"
           pull: yes 
 
@@ -85,13 +90,15 @@
         definition:
           version: '3.5'
           services:
+        # run container assignment1-ubuntu on port 80
             assignment1-ubuntu:
-              container_name: "assignment1-ubuntu"
+              container_name: "assignment1-ubuntu" 
               image: "assignment1-ubuntu:latest"
               ports:
                 - "80:80"
               restart: always
 
+        # run container assignment1-debain on port 81
             assignment1-debain:
               container_name: "assignment1-debain"
               image: "assignment1-debain:latest"
@@ -99,6 +106,7 @@
                 - "81:80"
               restart: always
 
+        # run container assignment1-centos on port 82
             assignment1-centos:
               container_name: "assignment1-centos"
               image: "assignment1-centos:latest"
