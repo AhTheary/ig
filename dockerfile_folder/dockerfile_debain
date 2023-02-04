@@ -9,7 +9,7 @@ RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install nginx
 
 # Expose port 
-EXPOSE 80
+EXPOSE 81
 
 # Run Nginx server
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
