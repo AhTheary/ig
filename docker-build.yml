@@ -96,13 +96,13 @@
               container_name: "assignment1-debain"
               image: "assignment1-debain:latest"
               ports:
-                - "81:81"
+                - "81:80"
               restart: always
 
             assignment1-centos:
               container_name: "assignment1-centos"
               image: "assignment1-centos:latest"
               ports:
-                - "82:82"
+                - "82:80"
               restart: always
             
