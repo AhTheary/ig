@@ -1,0 +1,64 @@
+---
+- hosts: client
+  tasks:
+    - name: login to docker image registry
+      docker_login: 
+        username: "theary003"
+        password: "@theary@0312"
+        reauthorize: yes
+
+    - name: Build Docker Image for ubuntu
+      docker_image:
+        name: assignment1-ubuntu
+        source: build 
+        build: 
+          path: "dockerfile_folder"
+          dockerfile: "dockerfile_ubuntu"
+          pull: yes 
+
+    - name: Build Docker Image for debain
+      docker_image:
+        name: assignment1-debain
+        source: build 
+        build: 
+          path: "dockerfile_folder"
+          dockerfile: "dockerfile_debain"
+          pull: yes 
+
+    - name: Build Docker Image for centos
+      docker_image:
+        name: assignment1-centos
+        source: build 
+        build: 
+          path: "dockerfile_folder"
+          dockerfile: "dockerfile_centos"
+          pull: yes 
+
+    - name: start service
+      docker_compose: 
+        project_name: "assignment1-ig"
+        recreate: always
+        definition:
+          version: '3.5'
+          services:
+            assignment1-ubuntu:
+              container_name: "assignment1-ubuntu"
+              image: "assignment1-ubuntu:latest"
+              ports:
+                - "80:80"
+              restart: always
+
+            assignment1-debain:
+              container_name: "assignment1-debain"
+              image: "assignment1-debain:latest"
+              ports:
+                - "81:80"
+              restart: always
+
+            assignment1-centos:
+              container_name: "assignment1-centos"
+              image: "assignment1-centos:latest"
+              ports:
+                - "82:80"
+              restart: always
+            

@@ -1,0 +1,15 @@
+#----------------------------------------------------------
+# Pull lastest debain image 
+FROM debian:latest 
+
+# update and upgrade packages
+RUN apt-get -y update && apt-get -y upgrade
+
+# install Nginx 
+RUN apt-get -y install nginx
+
+# Expose port 
+EXPOSE 80
+
+# Run Nginx server
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

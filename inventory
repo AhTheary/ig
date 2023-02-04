@@ -1,0 +1,2 @@
+[client]
+client1 ansible_connection=ssh ansible_user=root ansible_host=35.247.189.78

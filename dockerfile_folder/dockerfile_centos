@@ -1,0 +1,18 @@
+#----------------------------------------------------------
+# Pull centos7 image 
+FROM centos:7
+
+#  Installing epel-release
+RUN yum -y install epel-release
+
+#  Updating to notify yum of the new repository
+RUN yum -y update
+
+#   Installing nginx.
+RUN yum -y install nginx
+
+# Expose port 
+EXPOSE 80
+
+# Run Nginx server
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
