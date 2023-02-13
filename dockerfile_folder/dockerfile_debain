@@ -12,4 +12,4 @@ RUN apt-get -y install nginx
 EXPOSE 80
 
 # Run Nginx server
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
