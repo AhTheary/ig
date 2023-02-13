@@ -1,2 +1,2 @@
 [client]
-client1 ansible_connection=ssh ansible_user=root ansible_host=52.3.245.114
+client1 ansible_connection=ssh ansible_user=root ansible_host=52.204.70.20
