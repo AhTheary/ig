@@ -15,4 +15,4 @@ RUN yum -y install nginx
 EXPOSE 80
 
 # Run Nginx server
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
